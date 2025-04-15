@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	userTrans := userSdk.NeHttpClient("http://localhost:8081/", "")
+	userTrans := userSdk.NewHttpClient("http://localhost:8081/", "")
 
 	user, err := userTrans.Get("13ae2f6b-4050-46f1-94d4-afb13492f96c")
 

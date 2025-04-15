@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	courseTrans := courseSdk.NeHttpClient("http://localhost:8082/", "")
+	courseTrans := courseSdk.NewHttpClient("http://localhost:8082/", "")
 
 	course, err := courseTrans.Get("ce856191-ab87-4f88-a688-65a9d7a152ba")
 

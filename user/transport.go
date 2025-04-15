@@ -26,7 +26,7 @@ type (
 	}
 )
 
-func NeHttpClient(baseURL string, token string) Transport {
+func NewHttpClient(baseURL string, token string) Transport {
 	header := http.Header{}
 
 	if token != "" {
@@ -49,16 +49,16 @@ func (c *clientHTTP) Get(id string) (*domain.User, error) {
 		return nil, reps.Err
 	}
 
+	if err := reps.FillUp(&dataResponse); err != nil {
+		return nil, fmt.Errorf("%s", reps)
+	}
+
 	if reps.StatusCode == 404 {
-		return nil, ErrNotFound{fmt.Sprintf("%s", reps)}
+		return nil, ErrNotFound{fmt.Sprintf("%s", dataResponse.Message)}
 	}
 
 	if reps.StatusCode > 299 {
-		return nil, fmt.Errorf("error: %s", reps)
-	}
-
-	if err := reps.FillUp(&dataResponse); err != nil {
-		return nil, err
+		return nil, fmt.Errorf("error: %s", dataResponse.Message)
 	}
 
 	return dataResponse.Data.(*domain.User), nil
