@@ -3,8 +3,8 @@ module github.com/og11423074s/go_course_sdk
 go 1.24.2
 
 require (
-	github.com/ncostamagna/go_http_client v0.0.1
-	github.com/og11423074s/gocourse_domain v0.0.1
+	github.com/ncostamagna/go_http_client v0.0.3
+	github.com/og11423074s/gocourse_domain v0.0.3
 )
 
 require (
